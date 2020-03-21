@@ -1,5 +1,5 @@
 {
-  "name": "generator-jrbb",
+  "name": "@jrbbtech/generator-setup",
   "version": "1.0.0",
   "description": "JRBB Technology generators",
   "files": [

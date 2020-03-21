@@ -1,12 +1,12 @@
-# JRBB Technology generators
+# JRBB Technology "Setup" generators
 
 Generators to setup projects for node, typescript, and frontend frameworks
-such as React.
+such as React with organizations formatting and linting rules.
 
 ## Install
 
 ```bash
-npm install -g yo generator-jrbb
+npm install -g yo @jrbbtech/generator-setup
 ```
 
 ## codestyle
