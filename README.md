@@ -37,3 +37,25 @@ Install stylelint with a11y and prettier config and plugin with scss support.
 ```bash
 yo jrbb:stylelint
 ```
+
+## React
+
+Runs the stylelint generator (and codestyle).
+
+```bash
+yo jrbb:react
+```
+
+## React with typescript
+
+Runs the stylelint generator (and codestyle) and adds Typescript as per the
+documentation for [Create React App](https://create-react-app.dev/docs/adding-typescript).
+
+```bash
+yo jrbb:tsreact
+```
+
+## License
+
+[MIT License](./LICENSE)
+
