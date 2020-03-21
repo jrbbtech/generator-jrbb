@@ -19,7 +19,7 @@ All generators include the codestyle generator which adds .prettierrc.json,
 Installs jest and eslint with prettier config & plugin with es6 support.
 
 ```bash
-yo jrbb:node
+yo @jrbbtech/setup:node
 ```
 
 ## NodeJS with typescript
@@ -27,7 +27,7 @@ yo jrbb:node
 Installs jest, typescript, and tslint with prettier config & plugin.
 
 ```bash
-yo jrbb:tsnode
+yo @jrbbtech/setup:tsnode
 ```
 
 ## (s)css stylelint
@@ -35,7 +35,7 @@ yo jrbb:tsnode
 Install stylelint with a11y and prettier config and plugin with scss support.
 
 ```bash
-yo jrbb:stylelint
+yo @jrbbtech/setup:stylelint
 ```
 
 ## React
@@ -43,7 +43,7 @@ yo jrbb:stylelint
 Runs the stylelint generator (and codestyle).
 
 ```bash
-yo jrbb:react
+yo @jrbbtech/setup:react
 ```
 
 ## React with typescript
@@ -52,7 +52,7 @@ Runs the stylelint generator (and codestyle) and adds Typescript as per the
 documentation for [Create React App](https://create-react-app.dev/docs/adding-typescript).
 
 ```bash
-yo jrbb:tsreact
+yo @jrbbtech/setup:tsreact
 ```
 
 Starting the Create React App afterwards will generate the tsconfig.json file.
