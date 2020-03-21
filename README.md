@@ -55,6 +55,8 @@ documentation for [Create React App](https://create-react-app.dev/docs/adding-ty
 yo jrbb:tsreact
 ```
 
+Starting the Create React App afterwards will generate the tsconfig.json file.
+
 ## License
 
 [MIT License](./LICENSE)
