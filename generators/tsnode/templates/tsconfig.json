@@ -6,7 +6,6 @@
     "moduleResolution": "node",
     "outDir": "build",
     "resolveJsonModule": true,
-    "skipLibCheck": true,
     "sourceMap": true,
     "target": "ES6"
   },
