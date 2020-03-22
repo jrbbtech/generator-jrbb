@@ -14,6 +14,11 @@ module.exports = class extends Generator {
       this.destinationPath('tsconfig.json')
     );
 
+    this.fs.copyTpl(
+      this.templatePath('jest.config.js'),
+      this.destinationPath('jest.config.js')
+    );
+
     try {
       const pkgConfig = require(this.destinationPath('package.json'));
 
@@ -36,6 +41,7 @@ module.exports = class extends Generator {
   install() {
     this.npmInstall(
       [
+        '@types/jest',
         'jest',
         'ts-jest',
         'tsc',
