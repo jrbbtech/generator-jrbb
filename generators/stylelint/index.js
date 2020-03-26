@@ -2,7 +2,9 @@ const Generator = require('yeoman-generator');
 
 module.exports = class extends Generator {
   writing() {
-    this.composeWith(require.resolve('../codestyle'));
+    this.composeWith(require.resolve('../codestyle'), {
+      react: this.options.react,
+    });
 
     this.fs.copyTpl(
       this.templatePath('_stylelintrc.json'),
@@ -29,12 +31,12 @@ module.exports = class extends Generator {
       [
         'stylelint',
         'stylelint-a11y',
-        'stylelint-scss',
         'stylelint-config-prettier',
         'stylelint-prettier',
+        'stylelint-scss',
       ],
       {
-        'save-dev': true,
+        'save-dev': this.options.react ? false : true,
       }
     );
   }

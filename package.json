@@ -1,6 +1,6 @@
 {
   "name": "@jrbbtech/generator-setup",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JRBB Technology \"Setup\" generators",
   "files": ["generators"],
   "keywords": ["yeoman-generator"],

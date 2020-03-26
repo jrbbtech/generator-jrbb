@@ -44,7 +44,6 @@ module.exports = class extends Generator {
         '@types/jest',
         'jest',
         'ts-jest',
-        'tsc',
         'tslint',
         'tslint-config-prettier',
         'tslint-plugin-prettier',
