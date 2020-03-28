@@ -40,7 +40,7 @@ yo @jrbbtech/setup:stylelint
 
 ## React
 
-Runs the stylelint generator (and codestyle).
+Installs sass support and runs the stylelint generator (and codestyle).
 
 ```bash
 yo @jrbbtech/setup:react
@@ -48,14 +48,33 @@ yo @jrbbtech/setup:react
 
 ## React with typescript
 
-Runs the stylelint generator (and codestyle) and adds Typescript as per the
-documentation for [Create React App](https://create-react-app.dev/docs/adding-typescript).
+Installs sass support and runs the stylelint generator (and codestyle) and adds
+Typescript as per the documentation for [Create React App](https://create-react-app.dev/docs/adding-typescript).
 
 ```bash
 yo @jrbbtech/setup:tsreact
 ```
 
 Starting the Create React App afterwards will generate the tsconfig.json file.
+
+## Next
+
+Installs sass support and runs the stylelint generator (and codestyle).
+
+```bash
+yo @jrbbtech/setup:next
+```
+
+## Next with typescript
+
+Installs sass support and runs the stylelint generator (and codestyle) and adds
+Typescript as per the documentation for [Create Next App](https://nextjs.org/docs/basic-features/typescript).
+
+```bash
+yo @jrbbtech/setup:tsnext
+```
+
+Starting the Create Next App afterwards will generate the tsconfig.json file.
 
 ## License
 

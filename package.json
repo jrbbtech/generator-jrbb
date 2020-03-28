@@ -1,9 +1,13 @@
 {
   "name": "@jrbbtech/generator-setup",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "JRBB Technology \"Setup\" generators",
-  "files": ["generators"],
-  "keywords": ["yeoman-generator"],
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
   "license": "MIT",
   "dependencies": {
     "yeoman-generator": "^4.6.0"
