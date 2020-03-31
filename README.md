@@ -9,12 +9,27 @@ such as React with organizations formatting and linting rules.
 npm install -g yo @jrbbtech/generator-setup
 ```
 
-## codestyle
+## (s)css fontsize
+
+```css
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 14px;
+  font-size: 1.4rem;
+} /* =14px */
+```
+
+## Generators
+
+### codestyle
 
 All generators include the codestyle generator which adds .prettierrc.json,
 .prettierignore, and .editoconfig files to the project.
 
-## NodeJS
+### NodeJS
 
 Installs jest and eslint with prettier config & plugin with es6 support.
 
@@ -22,7 +37,7 @@ Installs jest and eslint with prettier config & plugin with es6 support.
 yo @jrbbtech/setup:node
 ```
 
-## NodeJS with typescript
+### NodeJS with typescript
 
 Installs jest, typescript, and tslint with prettier config & plugin.
 
@@ -30,7 +45,7 @@ Installs jest, typescript, and tslint with prettier config & plugin.
 yo @jrbbtech/setup:tsnode
 ```
 
-## (s)css stylelint
+### (s)css stylelint
 
 Install stylelint with a11y and prettier config and plugin with scss support.
 
@@ -38,7 +53,7 @@ Install stylelint with a11y and prettier config and plugin with scss support.
 yo @jrbbtech/setup:stylelint
 ```
 
-## React
+### React
 
 Installs sass support and runs the stylelint generator (and codestyle).
 
@@ -46,7 +61,7 @@ Installs sass support and runs the stylelint generator (and codestyle).
 yo @jrbbtech/setup:react
 ```
 
-## React with typescript
+### React with typescript
 
 Installs sass support and runs the stylelint generator (and codestyle) and adds
 Typescript as per the documentation for [Create React App](https://create-react-app.dev/docs/adding-typescript).
@@ -57,7 +72,7 @@ yo @jrbbtech/setup:tsreact
 
 Starting the Create React App afterwards will generate the tsconfig.json file.
 
-## Next
+### Next
 
 Installs sass support and runs the stylelint generator (and codestyle).
 
@@ -65,7 +80,7 @@ Installs sass support and runs the stylelint generator (and codestyle).
 yo @jrbbtech/setup:next
 ```
 
-## Next with typescript
+### Next with typescript
 
 Installs sass support and runs the stylelint generator (and codestyle) and adds
 Typescript as per the documentation for [Create Next App](https://nextjs.org/docs/basic-features/typescript).
