@@ -20,6 +20,18 @@ body {
   font-size: 14px;
   font-size: 1.4rem;
 } /* =14px */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 ```
 
 ## Generators
@@ -94,4 +106,3 @@ Starting the Create Next App afterwards will generate the tsconfig.json file.
 ## License
 
 [MIT License](./LICENSE)
-
