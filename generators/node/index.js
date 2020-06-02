@@ -13,7 +13,7 @@ module.exports = class extends Generator {
       const pkgConfig = require(this.destinationPath('package.json'));
 
       pkgConfig.scripts = pkgConfig.scripts || {};
-      pkgConfig.scripts['start'] = `${pkgConfig.main || 'src/app.js'}`;
+      pkgConfig.scripts['start'] = `node ${pkgConfig.main || 'src/app.js'}`;
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.scripts['lint'] = 'eslint --ext js,jsx .';
@@ -28,7 +28,13 @@ module.exports = class extends Generator {
 
   install() {
     this.npmInstall(
-      ['jest', 'eslint', 'eslint-config-prettier', 'eslint-plugin-prettier'],
+      [
+        'jest',
+        'eslint',
+        'eslint-config-prettier',
+        'eslint-plugin-prettier',
+        'babel-eslint',
+      ],
       {
         'save-dev': true,
       }

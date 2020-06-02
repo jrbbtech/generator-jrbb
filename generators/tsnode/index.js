@@ -24,7 +24,7 @@ module.exports = class extends Generator {
 
       pkgConfig.scripts = pkgConfig.scripts || {};
       pkgConfig.scripts['build'] = 'tsc';
-      pkgConfig.scripts['start'] = `tsc && ${pkgConfig.main ||
+      pkgConfig.scripts['start'] = `tsc && node ${pkgConfig.main ||
         'build/index.js'}`;
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
