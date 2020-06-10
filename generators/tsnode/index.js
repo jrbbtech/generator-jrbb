@@ -5,6 +5,11 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../codestyle'));
 
     this.fs.copyTpl(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
+    );
+
+    this.fs.copyTpl(
       this.templatePath('tslint.json'),
       this.destinationPath('tslint.json')
     );
@@ -24,8 +29,9 @@ module.exports = class extends Generator {
 
       pkgConfig.scripts = pkgConfig.scripts || {};
       pkgConfig.scripts['build'] = 'tsc';
-      pkgConfig.scripts['start'] = `tsc && node ${pkgConfig.main ||
-        'build/index.js'}`;
+      pkgConfig.scripts['start'] = `tsc && node ${
+        pkgConfig.main || 'build/index.js'
+      }`;
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';

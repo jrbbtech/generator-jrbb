@@ -5,6 +5,11 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../codestyle'));
 
     this.fs.copyTpl(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
+    );
+
+    this.fs.copyTpl(
       this.templatePath('_eslintrc.json'),
       this.destinationPath('.eslintrc.json')
     );
