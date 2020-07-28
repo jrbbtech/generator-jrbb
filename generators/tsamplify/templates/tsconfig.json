@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "amplify/backend/function/common/opt",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "target": "ES6",
+    "lib": ["ESNext"]
+  },
+  "include": ["src/graphql/queries.ts", "src/graphql/mutations.ts"]
+}
