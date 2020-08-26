@@ -6,11 +6,11 @@
     "forceConsistentCasingInFileNames": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    "outDir": "amplify/backend/function/common/opt",
+    "outDir": "build",
     "resolveJsonModule": true,
     "sourceMap": true,
     "target": "ES6",
     "lib": ["ESNext"]
   },
-  "include": ["src/graphql/queries.ts", "src/graphql/mutations.ts"]
+  "include": ["index.ts", "src"]
 }

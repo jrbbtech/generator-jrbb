@@ -1,6 +1,6 @@
 {
   "name": "@jrbbtech/generator-setup",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "JRBB Technology \"Setup\" generators",
   "scripts": {
     "pub": "npm run pub:github && npm run pub:npmjs",

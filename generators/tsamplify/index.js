@@ -28,7 +28,12 @@ module.exports = class extends Generator {
       const pkgConfig = require(this.destinationPath('package.json'));
 
       pkgConfig.scripts = pkgConfig.scripts || {};
-      pkgConfig.scripts['build'] = 'tsc';
+      pkgConfig.scripts['build'] =
+        'rm -rf build && amplify codegen && tsc && npm run cp:mutations && npm run cp:queries';
+      pkgConfig.scripts['cp:mutations'] =
+        'cp build/graphql/mutations.js amplify/backend/function/<functioName>/opt/';
+      pkgConfig.scripts['cp:queries'] =
+        'cp build/graphql/queries.js amplify/backend/function/<functionName>/opt/';
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
@@ -57,5 +62,15 @@ module.exports = class extends Generator {
         'save-dev': true,
       }
     );
+  }
+
+  end() {
+    console.info(`
+  ***************************************************************
+
+  Replace <functionName> in package.json with shared lambda layer
+
+  ***************************************************************
+    `);
   }
 };
