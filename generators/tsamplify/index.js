@@ -20,6 +20,11 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
+      this.templatePath('tsconfig.opt.json'),
+      this.destinationPath('tsconfig.opt.json')
+    );
+
+    this.fs.copyTpl(
       this.templatePath('jest.config.js'),
       this.destinationPath('jest.config.js')
     );
@@ -29,11 +34,9 @@ module.exports = class extends Generator {
 
       pkgConfig.scripts = pkgConfig.scripts || {};
       pkgConfig.scripts['build'] =
-        'rm -rf build && amplify codegen && tsc && npm run cp:mutations && npm run cp:queries';
-      pkgConfig.scripts['cp:mutations'] =
-        'cp build/graphql/mutations.js amplify/backend/function/<functioName>/opt/';
-      pkgConfig.scripts['cp:queries'] =
-        'cp build/graphql/queries.js amplify/backend/function/<functionName>/opt/';
+        'rm -rf build && amplify codegen && tsc && npm run build:opt';
+      pkgConfig.scripts['build:opt'] =
+        'rm -rf amplify/backend/function/<layerName>/opt/* && tsc -p tsconfig.opt.json';
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
@@ -68,7 +71,9 @@ module.exports = class extends Generator {
     console.info(`
   ***************************************************************
 
-  Replace <functionName> in package.json with shared lambda layer
+  1) Create a new lambda layer function
+  2) Replace <layerName> in package.json with shared lambda layer name
+  3) Replace <layerName> in tsconfig.opt.json with shared lambda layer name
 
   ***************************************************************
     `);
