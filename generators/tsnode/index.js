@@ -29,9 +29,8 @@ module.exports = class extends Generator {
 
       pkgConfig.scripts = pkgConfig.scripts || {};
       pkgConfig.scripts['build'] = 'tsc';
-      pkgConfig.scripts['start'] = `tsc && node ${
-        pkgConfig.main || 'build/index.js'
-      }`;
+      pkgConfig.scripts['build:watch'] = 'tsc --watch';
+      pkgConfig.scripts['start'] = 'tsc && node build/index.js';
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
