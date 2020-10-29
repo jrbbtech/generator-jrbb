@@ -24,6 +24,16 @@ module.exports = class extends Generator {
       this.destinationPath('jest.config.js')
     );
 
+    this.fs.copyTpl(
+      this.templatePath('Dockerfile'),
+      this.destinationPath('Dockerfile')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_dockerignore'),
+      this.destinationPath('.dockerignore')
+    );
+
     try {
       const pkgConfig = require(this.destinationPath('package.json'));
 
