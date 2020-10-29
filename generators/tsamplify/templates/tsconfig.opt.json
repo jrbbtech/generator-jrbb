@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "declaration": true,
+    "declaration": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    "outDir": "build",
+    "outDir": "amplify/backend/function/<layerName>/opt",
     "resolveJsonModule": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "target": "ES6",
     "lib": ["ESNext"]
   },
-  "include": ["index.ts", "src"]
+  "include": [
+    "src/graphql/mutations.ts",
+    "src/graphql/queries.ts",
+    "src/graphql/subscriptions.ts"
+  ]
 }

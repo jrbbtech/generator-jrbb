@@ -1,6 +1,6 @@
 {
   "name": "@jrbbtech/generator-setup",
-  "version": "1.3.0",
+  "version": "2.1.0",
   "description": "JRBB Technology \"Setup\" generators",
   "scripts": {
     "pub": "npm run pub:github && npm run pub:npmjs",
@@ -15,7 +15,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "yeoman-generator": "^4.6.0"
+    "yeoman-generator": "^4.11.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
