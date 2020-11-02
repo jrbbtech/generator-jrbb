@@ -3,9 +3,7 @@
   "version": "2.2.0",
   "description": "JRBB Technology \"Setup\" generators",
   "scripts": {
-    "pub": "npm run pub:github && npm run pub:npmjs",
-    "pub:github": "npm publish --registry=https://npm.pkg.github.com/",
-    "pub:npmjs": "npm publish --registry=https://registry.npmjs.org/"
+    "pub": "npm publish --registry=https://npm.pkg.github.com/"
   },
   "files": [
     "generators"
