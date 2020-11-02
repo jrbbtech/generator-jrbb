@@ -20,7 +20,7 @@ module.exports = class extends Generator {
 
   install() {
     this.npmInstall(['prettier'], {
-      'save-dev': this.options.react ? false : true,
+      'save-dev': !this.options.react,
     });
   }
 };

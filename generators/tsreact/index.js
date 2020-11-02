@@ -7,13 +7,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.npmInstall([
-      '@types/jest',
-      '@types/node',
-      '@types/react',
-      '@types/react-dom',
-      'node-sass',
-      'typescript',
-    ]);
+    this.npmInstall(['node-sass']);
   }
 };

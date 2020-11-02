@@ -36,7 +36,7 @@ module.exports = class extends Generator {
         'stylelint-scss',
       ],
       {
-        'save-dev': this.options.react ? false : true,
+        'save-dev': !this.options.react,
       }
     );
   }
