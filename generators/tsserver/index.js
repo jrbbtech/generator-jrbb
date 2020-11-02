@@ -24,12 +24,23 @@ module.exports = class extends Generator {
       this.destinationPath('jest.config.js')
     );
 
+    this.fs.copyTpl(
+      this.templatePath('Dockerfile'),
+      this.destinationPath('Dockerfile')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_dockerignore'),
+      this.destinationPath('.dockerignore')
+    );
+
     try {
       const pkgConfig = require(this.destinationPath('package.json'));
 
       pkgConfig.scripts = pkgConfig.scripts || {};
-      pkgConfig.scripts['build'] = 'tsc';
-      pkgConfig.scripts['build:watch'] = 'tsc --watch';
+      pkgConfig.scripts['start'] = 'tsc && node build/index.js';
+      pkgConfig.scripts['dev'] =
+        'cross-env NODE_ENV=dev nodemon -w index.ts -w src/ -x "tsc && npm run start" -V -e ts';
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
@@ -47,7 +58,9 @@ module.exports = class extends Generator {
     this.npmInstall(
       [
         '@types/jest',
+        'cross-env',
         'jest',
+        'nodemon',
         'ts-jest',
         'tslint',
         'tslint-config-prettier',
