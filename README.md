@@ -32,6 +32,18 @@ Generates Dockerfile, dotfiles, and config for a typescript node server project
 yo @jrbbtech/setup:tsserver
 ```
 
+### NodeJS server with typescript with Dapr backend
+
+Generates boilerplate server, Dockerfile, dotfiles, and config for a typescript
+node server project running on Dapr backend
+
+Requires Docker and Dapr to run.
+
+```bash
+yo @jrbbtech/setup:tsdapr
+npm run dapr # optional
+```
+
 ## License
 
 [MIT License](./LICENSE)

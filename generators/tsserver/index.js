@@ -38,7 +38,8 @@ module.exports = class extends Generator {
       const pkgConfig = require(this.destinationPath('package.json'));
 
       pkgConfig.scripts = pkgConfig.scripts || {};
-      pkgConfig.scripts['start'] = 'tsc && node build/index.js';
+      pkgConfig.scripts['build'] = 'tsc';
+      pkgConfig.scripts['start'] = 'node build/index.js';
       pkgConfig.scripts['dev'] =
         'cross-env NODE_ENV=dev nodemon -w index.ts -w src/ -x "tsc && npm run start" -V -e ts';
       pkgConfig.scripts['test'] = 'jest';
