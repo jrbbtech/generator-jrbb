@@ -2,6 +2,7 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import axios from 'axios';
 import bodyparser from 'koa-bodyparser';
+import cors from '@koa/cors';
 import env from 'env-var';
 import { v4 } from 'uuid';
 
@@ -53,6 +54,7 @@ router.post('/publisher', async ctx => {
   }
 });
 
+app.use(cors());
 app.use(
   bodyparser({
     extendTypes: {

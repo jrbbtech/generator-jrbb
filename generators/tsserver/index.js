@@ -56,9 +56,25 @@ module.exports = class extends Generator {
   }
 
   install() {
+    this.npmInstall([
+      '@koa/cors',
+      'axios',
+      'env-var',
+      'koa',
+      'koa-bodyparser',
+      'koa-router',
+      'uuid',
+    ]);
+
     this.npmInstall(
       [
+        '@types/axios',
         '@types/jest',
+        '@types/koa',
+        '@types/koa-bodyparser',
+        '@types/koa-router',
+        '@types/koa__cors',
+        '@types/uuid',
         'cross-env',
         'jest',
         'nodemon',

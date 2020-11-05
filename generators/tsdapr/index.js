@@ -37,26 +37,4 @@ module.exports = class extends Generator {
       console.info('Do you have a package.json?');
     }
   }
-
-  install() {
-    this.npmInstall([
-      'axios',
-      'env-var',
-      'koa',
-      'koa-bodyparser',
-      'koa-router',
-    ]);
-
-    this.npmInstall(
-      [
-        '@types/axios',
-        '@types/koa',
-        '@types/koa-bodyparser',
-        '@types/koa-router',
-      ],
-      {
-        'save-dev': true,
-      }
-    );
-  }
 };
