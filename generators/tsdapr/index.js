@@ -5,6 +5,16 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve('../tsserver'));
 
     this.fs.copyTpl(
+      this.templatePath('pipeline.yaml'),
+      this.destinationPath('config/pipeline.yaml')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('okta.yaml'),
+      this.destinationPath('components/okta.yaml')
+    );
+
+    this.fs.copyTpl(
       this.templatePath('pubsub.yaml'),
       this.destinationPath('components/pubsub.yaml')
     );

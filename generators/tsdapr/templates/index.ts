@@ -11,6 +11,23 @@ const DAPR_HTTP_PORT = env.get('DAPR_HTTP_PORT').asPortNumber();
 const app = new Koa();
 const router = new Router();
 
+const setUserId = async (ctx: Koa.Context, next: Koa.Next) => {
+  try {
+    const jwtToken = ctx.req.headers.authorization.split(' ')[1];
+    const encodedPayload = jwtToken.split('.')[1];
+    const decodedPayload = JSON.parse(
+      Buffer.from(encodedPayload, 'base64').toString('utf-8')
+    );
+
+    ctx.state.userId = decodedPayload.uid;
+  } catch (err) {
+    console.log(err);
+    ctx.throw(401);
+  }
+
+  await next();
+};
+
 router.post('/subscriber', async ctx => {
   try {
     const {
@@ -30,7 +47,7 @@ router.post('/subscriber', async ctx => {
   }
 });
 
-router.post('/publisher', async ctx => {
+router.post('/publisher', setUserId, async ctx => {
   const uuid = v4();
 
   try {
