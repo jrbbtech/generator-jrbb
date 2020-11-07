@@ -41,7 +41,7 @@ module.exports = class extends Generator {
       pkgConfig.scripts['build'] = 'tsc';
       pkgConfig.scripts['start'] = 'node build/index.js';
       pkgConfig.scripts['dev'] =
-        'cross-env NODE_ENV=dev nodemon -w index.ts -w src/ -x "tsc && npm run start" -V -e ts';
+        'cross-env NODE_OPTIONS=--enable-source-maps NODE_ENV=dev nodemon -w index.ts -w src/ -x "tsc && npm run start" -V -e ts';
       pkgConfig.scripts['test'] = 'jest';
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
@@ -57,7 +57,6 @@ module.exports = class extends Generator {
 
   install() {
     this.npmInstall([
-      '@koa/cors',
       'axios',
       'env-var',
       'koa',
@@ -73,7 +72,6 @@ module.exports = class extends Generator {
         '@types/koa',
         '@types/koa-bodyparser',
         '@types/koa-router',
-        '@types/koa__cors',
         '@types/uuid',
         'cross-env',
         'jest',
