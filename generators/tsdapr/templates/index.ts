@@ -4,8 +4,10 @@ import axios from 'axios';
 import bodyparser from 'koa-bodyparser';
 import env from 'env-var';
 import { v4 } from 'uuid';
+import { name as APP_NAME } from './package.json';
 
 const DAPR_HTTP_PORT = env.get('DAPR_HTTP_PORT').asPortNumber();
+const APP_PORT = env.get('APP_PORT').asPortNumber() || 3000;
 
 const app = new Koa();
 const router = new Router();
@@ -70,13 +72,10 @@ router.post('/publisher', setUserId, async ctx => {
 });
 
 app.use(
-  bodyparser({
-    extendTypes: {
-      json: ['application/cloudevents+json'],
-    },
-  })
+  bodyparser({ extendTypes: { json: ['application/cloudevents+json'] } })
+);
+app.use(router.routes());
+app.listen(APP_PORT, () =>
+  console.log(`${APP_NAME} is running on port ${APP_PORT}`)
 );
 
-app.use(router.routes());
-
-app.listen(3000, () => console.log('<%= name %> is running on port 3000'));
