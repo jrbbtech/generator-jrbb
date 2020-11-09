@@ -2,7 +2,6 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import axios from 'axios';
 import bodyparser from 'koa-bodyparser';
-import cors from '@koa/cors';
 import env from 'env-var';
 import { v4 } from 'uuid';
 
@@ -13,8 +12,8 @@ const router = new Router();
 
 const setUserId = async (ctx: Koa.Context, next: Koa.Next) => {
   try {
-    const jwtToken = ctx.req.headers.authorization.split(' ')[1];
-    const encodedPayload = jwtToken.split('.')[1];
+    const jwtToken = ctx.req.headers.authorization?.split(' ')[1];
+    const encodedPayload = jwtToken?.split('.')[1];
     const decodedPayload = JSON.parse(
       Buffer.from(encodedPayload, 'base64').toString('utf-8')
     );
@@ -71,7 +70,6 @@ router.post('/publisher', setUserId, async ctx => {
   }
 });
 
-app.use(cors());
 app.use(
   bodyparser({
     extendTypes: {
