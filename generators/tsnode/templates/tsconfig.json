@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowUnreachableCode": false,
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "lib": ["ESNext"],
     "module": "CommonJS",
     "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "build",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "target": "ES6",
-    "lib": ["ESNext"]
+    "strict": true,
+    "target": "ES6"
   },
   "include": ["index.ts", "src"]
 }
