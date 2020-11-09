@@ -12,12 +12,11 @@ const router = new Router();
 
 const setUserId = async (ctx: Koa.Context, next: Koa.Next) => {
   try {
-    const jwtToken = ctx.req.headers.authorization?.split(' ')[1];
-    const encodedPayload = jwtToken?.split('.')[1];
+    const jwtToken = ctx.req.headers.authorization!.split(' ')[1];
+    const encodedPayload = jwtToken.split('.')[1];
     const decodedPayload = JSON.parse(
       Buffer.from(encodedPayload, 'base64').toString('utf-8')
     );
-
     ctx.state.userId = decodedPayload.uid;
   } catch (err) {
     console.log(err);
