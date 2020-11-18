@@ -2,6 +2,10 @@ service: <%= name %>
 
 frameworkVersion: '2'
 
+custom:
+  stage: ${opt:stage, provider:stage}
+  region: ${opt:region, 'eu-central-1'}
+
 plugins:
   - serverless-plugin-typescript
   - serverless-dynamodb-local
@@ -10,6 +14,14 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: ${self:custom.stage}
+  region: ${self:custom.region}
+  environment:
+    SERVICE_ENV: '${self:custom.stage}'
+    SERVICE_NAME: '${self:service}'
+  tags:
+    env: '${self:custom.stage}'
+    name: '${self:service}'
 
 functions:
   run:
