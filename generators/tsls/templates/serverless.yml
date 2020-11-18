@@ -1,0 +1,16 @@
+service: <%= name %>
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dynamodb-local
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  run:
+    handler: handler.run

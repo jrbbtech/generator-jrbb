@@ -20,11 +20,6 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('jest.config.js'),
-      this.destinationPath('jest.config.js')
-    );
-
-    this.fs.copyTpl(
       this.templatePath('Dockerfile'),
       this.destinationPath('Dockerfile')
     );
@@ -47,6 +42,13 @@ module.exports = class extends Generator {
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
       pkgConfig.scripts['lint:fix'] =
         'tslint -c tslint.json -p tsconfig.json --fix';
+      pkgConfig.jest = {
+        preset: 'ts-jest',
+        testEnvironment: 'node',
+        transform: {
+          '^.+\\.(ts|tsx)?$': 'ts-jest',
+        },
+      };
 
       this.fs.writeJSON(this.destinationPath('package.json'), pkgConfig);
     } catch (e) {

@@ -4,23 +4,31 @@ module.exports = class extends Generator {
   writing() {
     this.composeWith(require.resolve('../codestyle'));
 
-    this.fs.copyTpl(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('tslint.json'),
-      this.destinationPath('tslint.json')
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('tsconfig.json'),
-      this.destinationPath('tsconfig.json')
-    );
-
     try {
       const pkgConfig = require(this.destinationPath('package.json'));
+      console.log(pkgConfig);
+
+      this.fs.copyTpl(
+        this.templatePath('_gitignore'),
+        this.destinationPath('.gitignore')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('tslint.json'),
+        this.destinationPath('tslint.json')
+      );
+
+      this.fs.delete('handler.js');
+      this.fs.copyTpl(
+        this.templatePath('handler.ts'),
+        this.destinationPath('handler.ts')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('serverless.yml'),
+        this.destinationPath('serverless.yml'),
+        { name: pkgConfig.name }
+      );
 
       pkgConfig.scripts = pkgConfig.scripts || {};
       pkgConfig.scripts['build'] = 'tsc';
@@ -50,6 +58,9 @@ module.exports = class extends Generator {
       [
         '@types/jest',
         'jest',
+        'serverless-dynamodb-local',
+        'serverless-offline',
+        'serverless-plugin-typescript',
         'ts-jest',
         'tslint',
         'tslint-config-prettier',

@@ -44,6 +44,19 @@ yo @jrbbtech/setup:tsdapr
 npm run dapr # optional
 ```
 
+### NodeJS serverless with typescript and offline support
+
+Generates boilerplate, dotfiles, and config for a typescript
+serverless project.
+
+```bash
+serverless
+cd <serverless-project>
+npm init
+yo @jrbbtech/setup:tsdapr
+serverless offline # optional
+```
+
 ## License
 
 [MIT License](./LICENSE)
