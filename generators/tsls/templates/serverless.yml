@@ -3,7 +3,7 @@ service: <%= name %>
 frameworkVersion: '2'
 
 custom:
-  stage: ${opt:stage, provider:stage}
+  stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'eu-central-1'}
 
 plugins:
