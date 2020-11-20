@@ -6,7 +6,6 @@ module.exports = class extends Generator {
 
     try {
       const pkgConfig = require(this.destinationPath('package.json'));
-      console.log(pkgConfig);
 
       this.fs.copyTpl(
         this.templatePath('_gitignore'),
@@ -16,6 +15,11 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('tslint.json'),
         this.destinationPath('tslint.json')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('tsconfig.json'),
+        this.destinationPath('tsconfig.json')
       );
 
       this.fs.delete('handler.js');
@@ -28,6 +32,11 @@ module.exports = class extends Generator {
         this.templatePath('serverless.yml'),
         this.destinationPath('serverless.yml'),
         { name: pkgConfig.name }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('docker-compose.yml'),
+        this.destinationPath('docker-compose.yml')
       );
 
       pkgConfig.scripts = pkgConfig.scripts || {};
@@ -56,6 +65,7 @@ module.exports = class extends Generator {
   install() {
     this.npmInstall(
       [
+        '@types/aws-lambda',
         '@types/jest',
         'jest',
         'serverless-dynamodb-local',

@@ -2,27 +2,82 @@ service: <%= name %>
 
 frameworkVersion: '2'
 
-custom:
-  stage: ${opt:stage, 'dev'}
-  region: ${opt:region, 'eu-central-1'}
-
 plugins:
   - serverless-plugin-typescript
-  - serverless-dynamodb-local
   - serverless-offline
+  - serverless-dynamodb-local
 
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: ${self:custom.stage}
-  region: ${self:custom.region}
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-central-1'}
   environment:
-    SERVICE_ENV: '${self:custom.stage}'
-    SERVICE_NAME: '${self:service}'
+    SERVICE_ENV: ${self:provider.stage}
+    SERVICE_NAME: ${self:service}
+    STREAM_TABLE: ${self:service}-${opt:stage, 'dev'}-stream
   tags:
-    env: '${self:custom.stage}'
-    name: '${self:service}'
+    env: ${self:provider.stage}
+    name: ${self:service}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan # replay
+        - dynamodb:PutItem # write event
+        - dynamodb:BatchWriteItem # write events
+      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.STREAM_TABLE}'
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem # get stream owner
+        - dynamodb:PutItem # set stream owner
+      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.STREAM_OWNER_TABLE}'
 
 functions:
   run:
     handler: handler.run
+
+resources:
+  Resources:
+    streamTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.STREAM_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: streamId
+            AttributeType: S
+          - AttributeName: eventId
+            AttributeType: S
+          - AttributeName: version
+            AttributeType: N
+          - AttributeName: timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: streamId
+            KeyType: HASH
+          - AttributeName: version
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: eventsByTimestamp
+            KeySchema:
+              - AttributeName: eventId
+                KeyType: HASH
+              - AttributeName: timestamp
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+    streamOwnerTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.STREAM_OWNER_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: streamId
+            AttributeType: S
+          - AttributeName: owner
+            AttributeType: S
+        KeySchema:
+          - AttributeName: streamId
+            KeyType: HASH
+          - AttributeName: owner
+            KeyType: RANGE
