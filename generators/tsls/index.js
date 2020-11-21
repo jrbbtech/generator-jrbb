@@ -13,11 +13,6 @@ module.exports = class extends Generator {
       );
 
       this.fs.copyTpl(
-        this.templatePath('_npmrc'),
-        this.destinationPath('.npmrc')
-      );
-
-      this.fs.copyTpl(
         this.templatePath('tslint.json'),
         this.destinationPath('tslint.json')
       );
