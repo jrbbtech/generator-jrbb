@@ -19,5 +19,5 @@
     "target": "ES2019"
   },
   "exclude": ["cdk.out"],
-  "include": ["handler.ts", "src"]
+  "include": ["handler.ts", "src", "aws"]
 }
