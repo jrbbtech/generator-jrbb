@@ -5,19 +5,19 @@
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["ESNext"],
+    "lib": ["ES2019"],
     "module": "CommonJS",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": ".build",
+    "outDir": "build",
     "resolveJsonModule": true,
-    "rootDir": "./",
     "sourceMap": true,
     "strict": true,
-    "target": "ES6"
+    "target": "ES2019"
   },
+  "exclude": ["cdk.out"],
   "include": ["index.ts", "src"]
 }

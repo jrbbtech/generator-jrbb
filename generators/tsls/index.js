@@ -34,9 +34,26 @@ module.exports = class extends Generator {
         { name: pkgConfig.name }
       );
 
+      const pascalName = pkgConfig.name
+        .replace(/[-_]/g, ' ')
+        .replace(/\w+/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase())
+        .replace(/\s/g, '');
+
       this.fs.copyTpl(
-        this.templatePath('docker-compose.yml'),
-        this.destinationPath('docker-compose.yml')
+        this.templatePath('aws/named-stack.ts'),
+        this.destinationPath(`aws/${pkgConfig.name}-stack.ts`),
+        {
+          pascalName,
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('aws/named.ts'),
+        this.destinationPath(`aws/${pkgConfig.name}.ts`),
+        {
+          pascalName,
+          name: pkgConfig.name,
+        }
       );
 
       pkgConfig.scripts = pkgConfig.scripts || {};
@@ -54,6 +71,8 @@ module.exports = class extends Generator {
           '^.+\\.(ts|tsx)?$': 'ts-jest',
         },
       };
+      pkgConfig.bin[pkgConfig.name] = `build/aws/${pkConfig.name}.js`;
+      pkgConfig.scripts['cdk'] = 'cdk';
 
       this.fs.writeJSON(this.destinationPath('package.json'), pkgConfig);
     } catch (e) {
@@ -63,14 +82,14 @@ module.exports = class extends Generator {
   }
 
   install() {
+    this.npmInstall(['@aws-cdk/core']);
+
     this.npmInstall(
       [
-        '@types/aws-lambda',
+        '@aws-cdk/assert',
         '@types/jest',
+        'aws-ckd',
         'jest',
-        'serverless-dynamodb-local',
-        'serverless-offline',
-        'serverless-plugin-typescript',
         'ts-jest',
         'tslint',
         'tslint-config-prettier',

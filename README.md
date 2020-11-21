@@ -44,17 +44,13 @@ yo @jrbbtech/setup:tsdapr
 npm run dapr # optional
 ```
 
-### NodeJS serverless with typescript and offline support
+### AWS CDK with typescript
 
 Generates boilerplate, dotfiles, and config for a typescript
-serverless project.
+AWS CDK typescript project.
 
 ```bash
-serverless
-cd <serverless-project>
-npm init
-yo @jrbbtech/setup:tsdapr
-serverless offline # optional
+yo @jrbbtech/setup:tsls
 ```
 
 ## License

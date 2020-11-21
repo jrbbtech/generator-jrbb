@@ -1,6 +1,6 @@
 {
   "name": "@jrbbtech/generator-setup",
-  "version": "3.5.0",
+  "version": "4.0.0",
   "description": "JRBB Technology project dotfiles and configuration generators",
   "scripts": {
     "pub": "npm publish --registry=https://npm.pkg.github.com/"
