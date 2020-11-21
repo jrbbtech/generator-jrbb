@@ -22,18 +22,6 @@ module.exports = class extends Generator {
         this.destinationPath('tsconfig.json')
       );
 
-      this.fs.delete('handler.js');
-      this.fs.copyTpl(
-        this.templatePath('handler.ts'),
-        this.destinationPath('handler.ts')
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('serverless.yml'),
-        this.destinationPath('serverless.yml'),
-        { name: pkgConfig.name }
-      );
-
       const pascalName = pkgConfig.name
         .replace(/[-_]/g, ' ')
         .replace(/\w+/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase())
@@ -56,23 +44,43 @@ module.exports = class extends Generator {
         }
       );
 
+      this.fs.copyTpl(
+        this.templatePath('test/aws/named.test.ts'),
+        this.destinationPath(`test/aws/${pkgConfig.name}.test.ts`),
+        {
+          pascalName,
+          name: pkgConfig.name,
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('cdk.json'),
+        this.destinationPath('cdk.json'),
+        {
+          name: pkgConfig.name,
+        }
+      );
+
       pkgConfig.scripts = pkgConfig.scripts || {};
+      pkgConfig.bin = pkgConfig.bin || {};
+      pkgConfig.bin[pkgConfig.name] = `build/aws/${pkgConfig.name}.js`;
       pkgConfig.scripts['build'] = 'tsc';
       pkgConfig.scripts['build:watch'] = 'tsc --watch';
-      pkgConfig.scripts['test'] = 'jest';
-      pkgConfig.scripts['test:watch'] = 'jest --watch';
+      pkgConfig.scripts['cdk'] = 'cdk';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
       pkgConfig.scripts['lint:fix'] =
         'tslint -c tslint.json -p tsconfig.json --fix';
+      pkgConfig.scripts['test'] = 'jest';
+      pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.jest = {
         preset: 'ts-jest',
+        roots: ['<rootDir>/test'],
         testEnvironment: 'node',
+        testMatch: ['**/*.test.ts'],
         transform: {
-          '^.+\\.(ts|tsx)?$': 'ts-jest',
+          '^.+\\.tsx?$': 'ts-jest',
         },
       };
-      pkgConfig.bin[pkgConfig.name] = `build/aws/${pkConfig.name}.js`;
-      pkgConfig.scripts['cdk'] = 'cdk';
 
       this.fs.writeJSON(this.destinationPath('package.json'), pkgConfig);
     } catch (e) {
@@ -88,7 +96,7 @@ module.exports = class extends Generator {
       [
         '@aws-cdk/assert',
         '@types/jest',
-        'aws-ckd',
+        'aws-cdk',
         'jest',
         'ts-jest',
         'tslint',

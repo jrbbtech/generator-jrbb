@@ -32,9 +32,11 @@ module.exports = class extends Generator {
         'tslint -c tslint.json -p tsconfig.json --fix';
       pkgConfig.jest = {
         preset: 'ts-jest',
+        roots: ['<rootDir>/test'],
         testEnvironment: 'node',
+        testMatch: ['**/*.test.ts'],
         transform: {
-          '^.+\\.(ts|tsx)?$': 'ts-jest',
+          '^.+\\.tsx?$': 'ts-jest',
         },
       };
 

@@ -1,5 +1,11 @@
 node_modules
 coverage
-.build
+build
 node_modules
-.serverless
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Parcel default cache directory
+.parcel-cache

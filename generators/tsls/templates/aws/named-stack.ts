@@ -7,4 +7,3 @@ export class <%= pascalName %>Stack extends cdk.Stack {
     // The code that defines your stack goes here
   }
 }
-
