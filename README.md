@@ -44,6 +44,12 @@ yo @jrbbtech/setup:tsdapr
 npm run dapr # optional
 ```
 
+### AWS Lambda with typescript
+
+```bash
+yo @jrbbtech/setup:tslambda
+```
+
 ### AWS CDK with typescript
 
 Generates boilerplate, dotfiles, and config for a typescript
