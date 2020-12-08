@@ -18,6 +18,5 @@
     "strict": true,
     "target": "ES2019"
   },
-  "exclude": ["cdk.out"],
-  "include": ["handler.ts", "src"]
+  "exclude": ["cdk.out"]
 }

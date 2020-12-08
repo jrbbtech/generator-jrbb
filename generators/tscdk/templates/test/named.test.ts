@@ -1,10 +1,10 @@
 import {
   expect as expectCDK,
   matchTemplate,
-  MatchStyle
+  MatchStyle,
 } from '@aws-cdk/assert';
 import * as cdk from '@aws-cdk/core';
-import * as <%= pascalName %> from '../../aws/<%= name %>-stack';
+import * as <%= pascalName %> from '../src/<%= name %>-stack';
 
 test('Empty Stack', () => {
   const app = new cdk.App();
@@ -13,7 +13,7 @@ test('Empty Stack', () => {
   expectCDK(stack).to(
     matchTemplate(
       {
-        Resources: {}
+        Resources: {},
       },
       MatchStyle.EXACT
     )

@@ -28,16 +28,16 @@ module.exports = class extends Generator {
         .replace(/\s/g, '');
 
       this.fs.copyTpl(
-        this.templatePath('aws/named-stack.ts'),
-        this.destinationPath(`aws/${pkgConfig.name}-stack.ts`),
+        this.templatePath('src/named-stack.ts'),
+        this.destinationPath(`src/${pkgConfig.name}-stack.ts`),
         {
           pascalName,
         }
       );
 
       this.fs.copyTpl(
-        this.templatePath('aws/named.ts'),
-        this.destinationPath(`aws/${pkgConfig.name}.ts`),
+        this.templatePath('app.ts'),
+        this.destinationPath(`app.ts`),
         {
           pascalName,
           name: pkgConfig.name,
@@ -45,8 +45,8 @@ module.exports = class extends Generator {
       );
 
       this.fs.copyTpl(
-        this.templatePath('test/aws/named.test.ts'),
-        this.destinationPath(`test/aws/${pkgConfig.name}.test.ts`),
+        this.templatePath('test/named.test.ts'),
+        this.destinationPath(`test/${pkgConfig.name}.test.ts`),
         {
           pascalName,
           name: pkgConfig.name,
@@ -62,11 +62,8 @@ module.exports = class extends Generator {
       );
 
       pkgConfig.scripts = pkgConfig.scripts || {};
-      pkgConfig.bin = pkgConfig.bin || {};
-      pkgConfig.bin[pkgConfig.name] = `build/aws/${pkgConfig.name}.js`;
       pkgConfig.scripts['build'] = 'tsc';
       pkgConfig.scripts['build:watch'] = 'tsc --watch';
-      pkgConfig.scripts['cdk'] = 'cdk';
       pkgConfig.scripts['lint'] = 'tslint -c tslint.json -p tsconfig.json';
       pkgConfig.scripts['lint:fix'] =
         'tslint -c tslint.json -p tsconfig.json --fix';
@@ -99,6 +96,7 @@ module.exports = class extends Generator {
         'aws-cdk',
         'jest',
         'ts-jest',
+        'ts-node',
         'tslint',
         'tslint-config-prettier',
         'tslint-plugin-prettier',

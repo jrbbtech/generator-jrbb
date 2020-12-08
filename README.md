@@ -50,7 +50,7 @@ Generates boilerplate, dotfiles, and config for a typescript
 AWS CDK typescript project.
 
 ```bash
-yo @jrbbtech/setup:tsls
+yo @jrbbtech/setup:tscdk
 ```
 
 ## License
