@@ -71,7 +71,7 @@ module.exports = class extends Generator {
       pkgConfig.scripts['test:watch'] = 'jest --watch';
       pkgConfig.jest = {
         preset: 'ts-jest',
-        roots: ['<rootDir>/test'],
+        roots: ['<rootDir>/src'],
         testEnvironment: 'node',
         testMatch: ['**/*.test.ts'],
         transform: {
